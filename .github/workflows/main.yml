@@ -1,0 +1,45 @@
+name: Check Landing Page
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f script.js
+          echo "All required files exist!"
+
+      - name: Check HTML
+        run: |
+          grep -q "<!DOCTYPE html>" index.html
+          grep -q "<html" index.html
+          grep -q "</html>" index.html
+          echo "HTML basic check passed!"
+
+      - name: Check CSS
+        run: |
+          test -s styles.css
+          echo "CSS file is not empty!"
+
+      - name: Check JavaScript
+        run: |
+          test -s script.js
+          echo "JavaScript file is not empty!"
+
+      - name: Finished
+        run: echo "Landing page checks completed successfully!"
