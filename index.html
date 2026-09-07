@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GitHub Actions - Modern CI/CD and workflow automation platform. Automate your build, test, and deployment pipeline right from GitHub.">
+  <title>GitHub Actions | Next-Gen CI/CD & Workflow Automation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Background -->
+  <div class="bg-glow-container">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-glow-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub Actions</span>
+        <span class="logo-badge">v2.4</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#simulator">Live Simulator</a></li>
+        <li><a href="#playground">Workflow Builder</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#badges">Status Badges</a></li>
+        <li><a href="#flow">Architecture</a></li>
+      </ul>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="#playground" class="btn btn-outline">Explore YAML</a>
+        <a href="#simulator" class="btn btn-primary">Start Workflow</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Lightning-fast CI/CD matrix execution enabled</span>
+      </div>
+      <h1>Automate your workflow from <span class="highlight-text">Idea to Production</span></h1>
+      <p class="hero-subtitle">
+        World-class continuous integration and delivery built natively into GitHub. Kick off parallel runners, test across multiple OS platforms, and deploy seamlessly.
+      </p>
+
+      <div class="hero-actions">
+        <button id="btnRunSim" class="btn btn-primary" style="font-size: 1rem; padding: 0.8rem 1.75rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Run Live Workflow
+        </button>
+        <button id="btnResetSim" class="btn btn-secondary" style="font-size: 1rem; padding: 0.8rem 1.5rem;">
+          Reset Pipeline
+        </button>
+      </div>
+
+      <!-- LIVE WORKFLOW RUNNER SIMULATOR -->
+      <div class="simulator-container" id="simulator">
+        <div class="window-header">
+          <div class="window-dots">
+            <div class="window-dot dot-red"></div>
+            <div class="window-dot dot-yellow"></div>
+            <div class="window-dot dot-green"></div>
+          </div>
+          <div class="window-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>workflow_run #1042 &bull; main &bull; trigger: push (commit 8a4c1f2)</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-green-bright);">
+            ● LIVE EXECUTION
+          </div>
+        </div>
+
+        <div class="simulator-body">
+          <!-- Sidebar Job Pipeline -->
+          <div class="simulator-sidebar">
+            <div class="sidebar-heading">Jobs in Workflow</div>
+            
+            <div class="job-item active" data-job="0">
+              <div class="job-status-icon status-success">✓</div>
+              <div class="job-info">
+                <div class="job-name">Setup & Cache</div>
+                <div class="job-time">ubuntu-latest &bull; 12s</div>
+              </div>
+            </div>
+
+            <div class="job-item" data-job="1">
+              <div class="job-status-icon status-running">⚙️</div>
+              <div class="job-info">
+                <div class="job-name">Unit & Integration Tests</div>
+                <div class="job-time">node v20.x &bull; 28s</div>
+              </div>
+            </div>
+
+            <div class="job-item" data-job="2">
+              <div class="job-status-icon status-queued">⏱</div>
+              <div class="job-info">
+                <div class="job-name">CodeQL Security Scan</div>
+                <div class="job-time">javascript &bull; queued</div>
+              </div>
+            </div>
+
+            <div class="job-item" data-job="3">
+              <div class="job-status-icon status-queued">⏱</div>
+              <div class="job-info">
+                <div class="job-name">Deploy to Production</div>
+                <div class="job-time">ghcr.io/container &bull; queued</div>
+              </div>
+            </div>
+
+            <div class="sim-controls">
+              <span style="font-size: 0.75rem; color: var(--text-dim); text-align: center; width: 100%;">
+                Click any job above to view streaming terminal logs
+              </span>
+            </div>
+          </div>
+
+          <!-- Console Output Window -->
+          <div class="terminal-view" id="terminalLog">
+            <!-- Log lines injected dynamically via script.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WORKFLOW PLAYGROUND -->
+    <section class="section" id="playground">
+      <div class="section-header">
+        <span class="section-tag">Interactive YAML Builder</span>
+        <h2 class="section-title">Declarative Workflows in Simple YAML</h2>
+        <p class="section-desc">
+          Define triggers, environment matrix configurations, and runner environments right in your <code>.github/workflows</code> directory.
+        </p>
+      </div>
+
+      <div class="playground-grid">
+        <!-- Editor Box -->
+        <div class="editor-box">
+          <div class="editor-tabs">
+            <button class="editor-tab active" data-template="ci">ci-pipeline.yml</button>
+            <button class="editor-tab" data-template="matrix">matrix-test.yml</button>
+            <button class="editor-tab" data-template="docker">docker-build.yml</button>
+            <button class="editor-tab" data-template="release">auto-release.yml</button>
+          </div>
+          <div class="code-wrapper">
+            <button class="copy-code-btn" id="copyYamlBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy YAML
+            </button>
+            <pre><code id="yamlCodeBlock"></code></pre>
+          </div>
+        </div>
+
+        <!-- Playground Panel Controls -->
+        <div class="playground-panel">
+          <div>
+            <div class="panel-group-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--accent-blue)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Event Triggers (`on:`)
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+              Actions can run automatically on any GitHub webhook event:
+            </p>
+            <div class="trigger-chips">
+              <span class="trigger-chip active">on: push</span>
+              <span class="trigger-chip active">on: pull_request</span>
+              <span class="trigger-chip">on: schedule (cron)</span>
+              <span class="trigger-chip">on: workflow_dispatch</span>
+              <span class="trigger-chip">on: release</span>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+            <div class="panel-group-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--accent-green-bright)"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Runner OS Environments
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;">
+              <span style="font-size: 0.8rem; background: var(--bg-tertiary); padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid var(--border-color); font-family: var(--font-mono); color: var(--accent-blue);">ubuntu-latest</span>
+              <span style="font-size: 0.8rem; background: var(--bg-tertiary); padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid var(--border-color); font-family: var(--font-mono); color: var(--accent-purple);">windows-latest</span>
+              <span style="font-size: 0.8rem; background: var(--bg-tertiary); padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid var(--border-color); font-family: var(--font-mono); color: var(--accent-cyan);">macos-latest (M1/M2/Intel)</span>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+            <div class="panel-group-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--accent-purple)"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Built-in Action Cache
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Dramatically decrease build times with zero configuration caching for <code>npm</code>, <code>pip</code>, <code>cargo</code>, <code>gradle</code>, and <code>go</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: FEATURES GRID -->
+    <section class="section" id="features">
+      <div class="section-header">
+        <span class="section-tag">Enterprise Capabilities</span>
+        <h2 class="section-title">Built for Scalable Engineering</h2>
+        <p class="section-desc">Everything you need to automate development workflows at any scale.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1: Matrix Builds -->
+        <div class="feature-card green">
+          <div class="feature-icon-box">⚡</div>
+          <h3>Parallel Matrix Builds</h3>
+          <p>Test across multiple operating systems, compilers, and language runtimes simultaneously with matrix strategy matrices.</p>
+          <div class="matrix-visualizer">
+            <div class="matrix-cell active">Ubuntu &bull; Node 18</div>
+            <div class="matrix-cell active">Ubuntu &bull; Node 20</div>
+            <div class="matrix-cell active">Ubuntu &bull; Node 22</div>
+            <div class="matrix-cell">Win &bull; Node 18</div>
+            <div class="matrix-cell active">Win &bull; Node 20</div>
+            <div class="matrix-cell">Win &bull; Node 22</div>
+            <div class="matrix-cell">macOS &bull; Node 18</div>
+            <div class="matrix-cell active">macOS &bull; Node 20</div>
+            <div class="matrix-cell">macOS &bull; Node 22</div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Marketplace -->
+        <div class="feature-card purple">
+          <div class="feature-icon-box">📦</div>
+          <h3>Action Marketplace</h3>
+          <p>Reuse over 20,000+ pre-built, community-verified actions to integrate with AWS, Docker, Vercel, Slack, and Kubernetes.</p>
+          <div class="marketplace-list">
+            <div class="mp-item">
+              <span>actions/checkout</span>
+              <span class="mp-version">v4.1.7</span>
+            </div>
+            <div class="mp-item">
+              <span class="mp-name">docker/build-push-action</span>
+              <span class="mp-version">v5.3.0</span>
+            </div>
+            <div class="mp-item">
+              <span>aws-actions/configure-aws-credentials</span>
+              <span class="mp-version">v4.0.2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Security & Secrets -->
+        <div class="feature-card cyan">
+          <div class="feature-icon-box">🔒</div>
+          <h3>Encrypted Secrets & OIDC</h3>
+          <p>Seamlessly mask sensitive API tokens, environment secrets, and pass short-lived credentials via OpenID Connect (OIDC).</p>
+          <div class="secret-box">
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-dim);">secret_key: AWS_SECRET_ACCESS_KEY</div>
+              <div class="secret-text" id="secretValueText">••••••••••••••••••••••••</div>
+            </div>
+            <button class="secret-toggle" id="secretToggleBtn">Reveal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: LIVE STATUS BADGES -->
+    <section class="section" id="badges">
+      <div class="section-header">
+        <span class="section-tag">Repository Integration</span>
+        <h2 class="section-title">Live Status Badges</h2>
+        <p class="section-desc">Generate dynamic, SVG status badges for your project's <code>README.md</code>.</p>
+      </div>
+
+      <div class="badge-generator-container">
+        <div>
+          <div class="form-group">
+            <label for="badgeRepoInput">Repository Name</label>
+            <input type="text" id="badgeRepoInput" class="form-input" value="facebook/react" placeholder="owner/repository">
+          </div>
+
+          <div class="form-group">
+            <label for="badgeBranchSelect">Target Branch</label>
+            <select id="badgeBranchSelect" class="form-select">
+              <option value="main">main</option>
+              <option value="master">master</option>
+              <option value="develop">develop</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="badgeStatusSelect">Simulated State</label>
+            <select id="badgeStatusSelect" class="form-select">
+              <option value="passing">passing (green)</option>
+              <option value="failing">failing (red)</option>
+              <option value="building">building (yellow)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="badge-preview-card">
+          <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Live Render Preview</div>
+          <div id="badgeDisplay" class="badge-display badge-passing">
+            <span>build</span> <span>|</span> <span>✓ passing</span>
+          </div>
+
+          <div style="width: 100%;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.4rem;">Markdown Snippet</div>
+            <div style="background: #000000; padding: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); word-break: break-all;" id="badgeCodeOutput">
+              ![facebook/react CI](https://github.com/facebook/react/actions/workflows/main.yml/badge.svg?branch=main)
+            </div>
+            <button class="btn btn-secondary" id="copyBadgeBtn" style="width: 100%; margin-top: 0.75rem; font-size: 0.8rem; justify-content: center;">
+              Copy Markdown to Clipboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ARCHITECTURE FLOWCHART -->
+    <section class="section" id="flow" style="border-bottom: none;">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Workflow Execution Lifecycle</h2>
+        <p class="section-desc">From code push to containerized execution and deployment artifact generation.</p>
+      </div>
+
+      <div class="flow-container">
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🔔</div>
+          <div class="flow-node-title">1. Event Trigger</div>
+          <div class="flow-node-subtitle">Git Push / PR / Webhook</div>
+        </div>
+
+        <div class="flow-arrow">➔</div>
+
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">⚡</div>
+          <div class="flow-node-title">2. Orchestrator</div>
+          <div class="flow-node-subtitle">Parse .github/workflows/*.yml</div>
+        </div>
+
+        <div class="flow-arrow">➔</div>
+
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🖥️</div>
+          <div class="flow-node-title">3. Runner Pool</div>
+          <div class="flow-node-subtitle">Ephemeral VM / Container</div>
+        </div>
+
+        <div class="flow-arrow">➔</div>
+
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">🚀</div>
+          <div class="flow-node-title">4. Deploy & Artifacts</div>
+          <div class="flow-node-subtitle">Release / Package Registry</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub Actions</span>
+        </a>
+        <p>Automate, customize, and execute your software development workflows right in your repository.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#simulator">Workflow Simulator</a></li>
+          <li><a href="#playground">YAML Playground</a></li>
+          <li><a href="#features">Matrix Testing</a></li>
+          <li><a href="#badges">Status Badges</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">Documentation</a></li>
+          <li><a href="https://github.com/marketplace?type=actions" target="_blank" rel="noopener">Marketplace</a></li>
+          <li><a href="https://github.com/actions" target="_blank" rel="noopener">Official Actions Repos</a></li>
+          <li><a href="https://github.community/" target="_blank" rel="noopener">Community Forum</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub.com</a></li>
+          <li><a href="https://twitter.com/github" target="_blank" rel="noopener">Twitter / X</a></li>
+          <li><a href="https://github.blog" target="_blank" rel="noopener">GitHub Blog</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 GitHub Actions Landing Showcase. Created with HTML5, CSS3, & Vanilla JS.</div>
+      <div>Designed with Dark Mode Glassmorphism & Neon Glows</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
